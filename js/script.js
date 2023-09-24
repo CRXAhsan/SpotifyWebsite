@@ -1,8 +1,8 @@
-console.log("Welcome to Spotify");
+// console.log("Welcome to Spotify");
 
 //Initialize the variable
 let songIndex = 0;
-let audioElement = new Audio('../songs/jhumka.mpeg');
+let audioElement = new Audio('../songs/1.mpeg');
 let masterPlay = document.getElementById('masterPlay');
 let myProgressBar = document.getElementById('myProgressBar');
 let gif = document.getElementById('gif');
@@ -12,12 +12,12 @@ let songItems = Array.from(document.getElementsByClassName('songItem'));
 let songs = [
     { songname: "Hai Tammana Hummay - Kaifa Khalil", filePath: "../songs/1.mpeg", coverPath: "../image/C1.jpg" },
     { songname: "Heeriya Heeriya - Jubin Notial", filePath: "../songs/2.mpeg", coverPath: "../image/C2.jpg" },
-    { songname: "Hai Jhumka - Salman Khan", filePath: "../songs/3.mpeg", coverPath: "../image/C3.png" },
+    { songname: "Hai Jhumka - Salman Khan", filePath: "../songs/3.mpeg", coverPath: "../image/C3.jpg" },
     { songname: "Touch Me Like You Do - English", filePath: "../songs/4.mpeg", coverPath: "../image/C4.jpg" },
     { songname: "Tu Aakay Dekhlay - Soul Brothers", filePath: "../songs/5.mpeg", coverPath: "../image/C5.png" },
     { songname: "Tu Hosh Tu Nasha - My Songs", filePath: "../songs/6.mpeg", coverPath: "../image/C6.jpg" },
 ]
-
+FileSystemWritableFileStream
 songItems.forEach((element, i) => {
     element.getElementsByTagName("img")[0].src = songs[i].coverPath;
     element.getElementsByClassName("songName")[0].innerText = songs[i].songname;
@@ -49,7 +49,7 @@ audioElement.addEventListener('timeupdate', () => {
 })
 
 myProgressBar.addEventListener('change', () => {
-    audioElement.currentTime = myProgressBar.value * audioElement.duration / 100;
+    audioElement.currentTime = ((myProgressBar.value * audioElement.duration) / 100);
 })
 
 const makeAllPlays = () => {
@@ -84,11 +84,12 @@ document.getElementById('next').addEventListener('click', () => {
         songIndex += 1;
     }
     audioElement.src = `../songs/${songIndex + 1}.mpeg`;
-        audioElement.currentTime = 0;
-        audioElement.play();
-        masterName.innerText = songs[songIndex].songname;
-        masterPlay.classList.remove('fa-play-circle');
-        masterPlay.classList.remove('fa-pause-circle');
+    audioElement.currentTime = 0;
+    masterName.innerText = songs[songIndex].songname;
+    audioElement.play();
+
+    masterPlay.classList.remove('fa-play-circle');
+    masterPlay.classList.remove('fa-pause-circle');
 })
 
 document.getElementById('previous').addEventListener('click', () => {
@@ -99,9 +100,9 @@ document.getElementById('previous').addEventListener('click', () => {
         songIndex -= 1;
     }
     audioElement.src = `../songs/${songIndex + 1}.mpeg`;
-        audioElement.currentTime = 0;
-        masterName.innerText = songs[songIndex].songname;
-        audioElement.play();
-        masterPlay.classList.remove('fa-play-circle');
-        masterPlay.classList.remove('fa-pause-circle');
+    audioElement.currentTime = 0;
+    masterName.innerText = songs[songIndex].songname;
+    audioElement.play();
+    masterPlay.classList.remove('fa-play-circle');
+    masterPlay.classList.remove('fa-pause-circle');
 })
